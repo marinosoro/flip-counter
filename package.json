@@ -1,0 +1,28 @@
+{
+  "name": "flip-counter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marinosoro/flip-counter.git"
+  },
+  "author": "Marino Soro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marinosoro/flip-counter/issues"
+  },
+  "homepage": "https://github.com/marinosoro/flip-counter#readme",
+  "devDependencies": {
+    "vite": "^4.5.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^4.4.1",
+    "moment": "^2.29.4",
+    "vue": "^3.3.8"
+  }
+}
