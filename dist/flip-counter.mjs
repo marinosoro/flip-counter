@@ -2821,7 +2821,7 @@ const Jn = {
       seconds: "00"
     };
   }
-}, Qn = { class: "flex gap-2 flex-wrap items-center justify-center" };
+}, Qn = { class: "flip-counter" };
 function Xn(e, t, s, r, a, i) {
   const n = Bt("FlipNumber");
   return B(), ce("div", Qn, [
@@ -2871,7 +2871,7 @@ function Xn(e, t, s, r, a, i) {
     }, null, 8, ["value", "label", "fontSize", "labelSize"])
   ]);
 }
-const el = /* @__PURE__ */ Lt(Jn, [["render", Xn]]);
+const el = /* @__PURE__ */ Lt(Jn, [["render", Xn], ["__scopeId", "data-v-ac902ccf"]]);
 export {
   el as FlipCounter
 };
