@@ -1,5 +1,5 @@
 <template>
-    <div class="flex gap-2 flex-wrap items-center justify-center">
+    <div class="flip-counter">
         <FlipNumber
             v-if="parseInt(years) > 0"
             :value="years"
@@ -131,6 +131,12 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.flip-counter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
 </style>
