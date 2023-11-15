@@ -1,7 +1,7 @@
 <template>
     <div class="flip-counter">
         <FlipNumber
-            v-if="parts.includes('years') && parseInt(years) > 0"
+            v-if="parseInt(years) > 0"
             :value="years"
             :speed="600"
             :label="labels.years || 'Years'"
@@ -9,7 +9,7 @@
             :labelSize="labelSize"
         />
         <FlipNumber
-            v-if="parts.includes('months') && parseInt(months) > 0"
+            v-if="parseInt(months) > 0"
             :value="months"
             :speed="600"
             :label="labels.months || 'Months'"
@@ -17,7 +17,7 @@
             :labelSize="labelSize"
         />
         <FlipNumber
-            v-if="parts.includes('weeks')"
+            v-if="includeWeeks"
             :value="weeks"
             :speed="600"
             :label="labels.weeks || 'Weeks'"
@@ -25,7 +25,6 @@
             :labelSize="labelSize"
         />
         <FlipNumber
-            v-if="parts.includes('days')"
             :value="days"
             :speed="600"
             :label="labels.days || 'Days'"
@@ -33,7 +32,6 @@
             :labelSize="labelSize"
         />
         <FlipNumber
-            v-if="parts.includes('hours')"
             :value="hours"
             :speed="600"
             :label="labels.hours || 'Hours'"
@@ -41,7 +39,6 @@
             :labelSize="labelSize"
         />
         <FlipNumber
-            v-if="parts.includes('minutes')"
             :value="minutes"
             :speed="600"
             :label="labels.minutes || 'Minutes'"
@@ -49,7 +46,6 @@
             :labelSize="labelSize"
         />
         <FlipNumber
-            v-if="parts.includes('seconds')"
             :value="seconds"
             :speed="600"
             :label="labels.seconds || 'Seconds'"
@@ -93,12 +89,10 @@ export default {
                 }
             }
         },
-        parts: {
-            type: Array,
-            default: () => {
-                return ['years', 'months', 'days', 'hours', 'minutes', 'seconds']
-            }
-        }
+        includeWeeks: {
+            type: Boolean,
+            default: false
+        },
     },
     components: {
         FlipNumber,
@@ -120,7 +114,7 @@ export default {
             this.years = this.pad(preciseDiff.years, 2);
             this.months = this.pad(preciseDiff.months, 2);
 
-            if (this.parts.includes('weeks')) {
+            if (this.includeWeeks) {
                 // Split the days in weeks and days
                 this.weeks = this.pad(Math.floor(preciseDiff.days / 7), 2);
                 this.days = this.pad(preciseDiff.days % 7, 2);
