@@ -17,6 +17,14 @@
             :labelSize="labelSize"
         />
         <FlipNumber
+            v-if="parts.includes('weeks')"
+            :value="weeks"
+            :speed="600"
+            :label="labels.weeks || 'Weeks'"
+            :fontSize="fontSize"
+            :labelSize="labelSize"
+        />
+        <FlipNumber
             v-if="parts.includes('days')"
             :value="days"
             :speed="600"
@@ -77,6 +85,7 @@ export default {
                 return {
                     years: 'Years',
                     months: 'Months',
+                    weeks: 'Weeks',
                     days: 'Days',
                     hours: 'Hours',
                     minutes: 'Minutes',
@@ -110,7 +119,15 @@ export default {
 
             this.years = this.pad(preciseDiff.years, 2);
             this.months = this.pad(preciseDiff.months, 2);
-            this.days = this.pad(preciseDiff.days, 2);
+
+            if (this.parts.includes('weeks')) {
+                // Split the days in weeks and days
+                this.weeks = this.pad(Math.floor(preciseDiff.days / 7), 2);
+                this.days = this.pad(preciseDiff.days % 7, 2);
+            } else {
+                this.days = this.pad(preciseDiff.days, 2);
+            }
+
             this.hours = this.pad(preciseDiff.hours, 2);
             this.minutes = this.pad(preciseDiff.minutes, 2);
             this.seconds = this.pad(preciseDiff.seconds, 2);
@@ -132,6 +149,7 @@ export default {
         return {
             years: '00',
             months: '00',
+            weeks: '00',
             days: '00',
             hours: '00',
             minutes: '00',
