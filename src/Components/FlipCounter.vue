@@ -1,7 +1,7 @@
 <template>
     <div class="flip-counter">
         <FlipNumber
-            v-if="parseInt(years) > 0"
+            v-if="parts.includes('years') && parseInt(years) > 0"
             :value="years"
             :speed="600"
             :label="labels.years || 'Years'"
@@ -9,7 +9,7 @@
             :labelSize="labelSize"
         />
         <FlipNumber
-            v-if="parseInt(months) > 0"
+            v-if="parts.includes('months') && parseInt(months) > 0"
             :value="months"
             :speed="600"
             :label="labels.months || 'Months'"
@@ -17,6 +17,7 @@
             :labelSize="labelSize"
         />
         <FlipNumber
+            v-if="parts.includes('days')"
             :value="days"
             :speed="600"
             :label="labels.days || 'Days'"
@@ -24,6 +25,7 @@
             :labelSize="labelSize"
         />
         <FlipNumber
+            v-if="parts.includes('hours')"
             :value="hours"
             :speed="600"
             :label="labels.hours || 'Hours'"
@@ -31,6 +33,7 @@
             :labelSize="labelSize"
         />
         <FlipNumber
+            v-if="parts.includes('minutes')"
             :value="minutes"
             :speed="600"
             :label="labels.minutes || 'Minutes'"
@@ -38,6 +41,7 @@
             :labelSize="labelSize"
         />
         <FlipNumber
+            v-if="parts.includes('seconds')"
             :value="seconds"
             :speed="600"
             :label="labels.seconds || 'Seconds'"
@@ -78,6 +82,12 @@ export default {
                     minutes: 'Minutes',
                     seconds: 'Seconds',
                 }
+            }
+        },
+        parts: {
+            type: Array,
+            default: () => {
+                return ['years', 'months', 'days', 'hours', 'minutes', 'seconds']
             }
         }
     },
