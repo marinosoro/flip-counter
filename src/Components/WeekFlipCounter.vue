@@ -73,8 +73,8 @@ export default {
             // Finally, get the difference between the two dates
             const diffInDays = Math.abs(date.diff(now, 'days'))
 
-            this.weeks = this.pad(Math.floor(diffInDays / 7), 2);
-            this.days = this.pad(diffInDays % 7, 2);
+            this.weeks = Math.floor(diffInDays / 7);
+            this.days = diffInDays % 7;
             if (this.countToday) {
                 if (now >= date) {
                     this.days += 1;
@@ -86,6 +86,8 @@ export default {
                     }
                 }
             }
+            this.weeks = this.pad(this.weeks, 2);
+            this.days = this.pad(this.days, 2);
         },
         pad(num, size) {
             num = num.toString();
