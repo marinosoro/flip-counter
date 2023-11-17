@@ -2911,6 +2911,10 @@ const Kn = {
     includeDays: {
       type: Boolean,
       default: !1
+    },
+    countToday: {
+      type: Boolean,
+      default: !1
     }
   },
   components: {
@@ -2919,7 +2923,7 @@ const Kn = {
   methods: {
     getDateDiff() {
       const e = o(this.date), t = o(), s = Math.abs(e.diff(t, "days"));
-      this.weeks = this.pad(Math.floor(s / 7), 2), this.days = this.pad(s % 7, 2);
+      this.weeks = Math.floor(s / 7), this.days = s % 7, this.countToday && (t >= e ? this.days += 1 : (this.days -= 1, this.days < 0 && (this.days = 6, this.weeks -= 1))), this.weeks = this.pad(this.weeks, 2), this.days = this.pad(this.days, 2);
     },
     pad(e, t) {
       for (e = e.toString(); e.length < t; )
@@ -2959,7 +2963,7 @@ function tl(e, t, s, r, a, i) {
     }, null, 8, ["value", "label", "fontSize", "labelSize"])) : Le("", !0)
   ]);
 }
-const al = /* @__PURE__ */ nt(Kn, [["render", tl], ["__scopeId", "data-v-5a298de0"]]);
+const al = /* @__PURE__ */ nt(Kn, [["render", tl], ["__scopeId", "data-v-c49e8a0b"]]);
 export {
   rl as FlipCounter,
   al as WeekFlipCounter
