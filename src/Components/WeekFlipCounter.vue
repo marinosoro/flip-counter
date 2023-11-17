@@ -51,6 +51,10 @@ export default {
             type: Boolean,
             default: false
         },
+        countToday: {
+            type: Boolean,
+            default: false
+        },
     },
     components: {
         FlipNumber,
@@ -71,6 +75,17 @@ export default {
 
             this.weeks = this.pad(Math.floor(diffInDays / 7), 2);
             this.days = this.pad(diffInDays % 7, 2);
+            if (this.countToday) {
+                if (now >= date) {
+                    this.days += 1;
+                } else {
+                    this.days -= 1;
+                    if (this.days < 0) {
+                        this.days = 6;
+                        this.weeks -= 1;
+                    }
+                }
+            }
         },
         pad(num, size) {
             num = num.toString();
